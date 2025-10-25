@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تنفّس حرًّا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(90deg, #2c3e50 0%, #1a2a3a 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        /* Home Page Styles */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(26, 42, 58, 0.9)), url('https://placehold.co/1200x600/2c3e50/ffffff?text=تنفّس+حرًّا') center/cover;
+            color: white;
+            margin-bottom: 3rem;
+            border-radius: 15px;
+            margin: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4CAF50;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .cta-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .why-quit {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+
+        .why-quit h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .reasons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .reason {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .reason-icon {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Plan Page Styles */
+        .plan-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .plan-week {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .plan-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .plan-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .plan-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .replacement-list {
+            list-style: none;
+        }
+
+        .replacement-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Progress Page Styles */
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 1rem 0;
+        }
+
+        .streak-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .success-message,
+        .setback-message {
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .setback-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Stories Page Styles */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .story-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .story-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .lesson {
+            font-style: italic;
+            color: #666;
+            border-right: 3px solid #4CAF50;
+            padding-right: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Hidden class for navigation */
+        .hidden {
+            display: none;
+        }
+
+        /* Active page styling */
+        .active-page {
+            display: block;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">تنفّس حرًّا</div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showPage('home')">الرئيسية</a></li>
+                    <li><a href="#" onclick="showPage('assessment')">التقييم</a></li>
+                    <li><a href="#" onclick="showPage('plan')">الخطة</a></li>
+                    <li><a href="#" onclick="showPage('progress')">التقدم</a></li>
+                    <li><a href="#" onclick="showPage('replacements')">البدائل</a></li>
+                    <li><a href="#" onclick="showPage('stories')">القصص</a></li>
+                    <li><a href="#" onclick="showPage('support')">الدعم</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active-page">
+            <div class="hero">
+                <h1>تنفّس حرًّا — البداية الصغيرة تصنع فرقًا كبيرًا</h1>
+                <p>مرحبًا بك في منصة "تنفّس حرًّا" — مبادرة تطوعية تهدف لمساعدتك على الإقلاع عن التدخين تدريجيًا وبأسلوب هادئ ومحفّز دون ضغط أو محاضرات.</p>
+                <p>رحلتك تبدأ هنا… خطوة واحدة تكفي لتغيير حياتك.</p>
+                <a href="#" class="cta-button" onclick="showPage('assessment')">ابدأ رحلتك الآن</a>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <h3>الطريقة الجديدة</h3>
+                    <p>بدلًا من الإقلاع الفوري، نساعدك على تقليل 10% كل أسبوع مع بدائل صحية ونظام تتبع يومي.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>بدائل صحية</h3>
+                    <p>نوفر لك بدائل فعالة وسهلة التطبيق لتحل محل السجائر في اللحظات الحرجة.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>دعم مستمر</h3>
+                    <p>نظام تتبع التقدم مع رسائل تحفيزية ومجتمع داعم لتحقيق النجاح.</p>
+                </div>
+            </div>
+
+            <div class="why-quit">
+                <h2>لماذا الإقلاع؟</h2>
+                <div class="reasons">
+                    <div class="reason">
+                        <div class="reason-icon">❤️</div>
+                        <h3>حماية صحتك</h3>
+                        <p>تحسين وظائف الرئة وتقليل خطر الأمراض المزمنة</p>
+                    </div>
+                    <div class="reason">
+                        <div class="reason-icon">💰</div>
+                        <h3>توفير مالك</h3>
+                        <p>حسابك البنكي سيشكرك على كل سيجارة تركتها</p>
+                    </div>
+                    <div class="reason">
+                        <div class="reason-icon">💪</div>
+                        <h3>احترام جسمك</h3>
+                        <p>اختر لنفسك ولمن حولك بيئة أكثر صحة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assessment Page -->
+        <div id="assessment" class="page hidden">
+            <div class="form-container">
+                <h2 style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">أجب عن الأسئلة التالية لنصنع لك خطة شخصية تناسب سرعتك وقوتك وإيقاع حياتك</h2>
+                
+                <form id="assessment-form">
+                    <div class="form-group">
+                        <label for="smoking-type">نوع التدخين:</label>
+                        <select id="smoking-type" required>
+                            <option value="">اختر النوع</option>
+                            <option value="cigarettes">سجائر</option>
+                            <option value="shisha">شيشة</option>
+                            <option value="vape">فيب</option>
+                            <option value="other">أخرى</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="daily-average">متوسط عدد مرات التدخين في اليوم:</label>
+                        <input type="number" id="daily-average" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>متى تدخن غالبًا:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="morning" value="morning">
+                                <label for="morning">بعد الاستيقاظ</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="after-meal" value="after-meal">
+                                <label for="after-meal">بعد الأكل</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="stress" value="stress">
+                                <label for="stress">عند التوتر</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="social" value="social">
+                                <label for="social">مع الأصدقاء</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="break" value="break">
+                                <label for="break">أثناء الراحة</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="before-sleep" value="before-sleep">
+                                <label for="before-sleep">قبل النوم</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quit-reason">سبب رغبتك في الإقلاع:</label>
+                        <select id="quit-reason" required>
+                            <option value="">اختر السبب</option>
+                            <option value="health">صحي</option>
+                            <option value="financial">مالي</option>
+                            <option value="religious">ديني</option>
+                            <option value="family">أسري</option>
+                            <option value="other">آخر</option>
+                        </select>
+                        <input type="text" id="custom-reason" placeholder="اكتب سببك..." style="margin-top: 10px; display: none;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="addiction-level">قوة تعلقك من 1 إلى 10:</label>
+                        <input type="range" id="addiction-level" min="1" max="10" value="5" required>
+                        <span id="level-value">5</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="previous-attempts">هل حاولت الإقلاع سابقًا؟ كم أطول مدة؟</label>
+                        <textarea id="previous-attempts" rows="3" placeholder="اكتب تجربتك..."></textarea>
+                    </div>
+
+                    <button type="button" class="cta-button" onclick="generatePlan()">أنشئ خطتي الأسبوعية</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Plan Page -->
+        <div id="plan" class="page hidden">
+            <div class="plan-header">
+                <h1>خطة التدرج — قلّل 10% كل أسبوع بدون صدمة</h1>
+            </div>
+
+            <div class="plan-week">
+                <h2>الأسبوع: 1</h2>
+                <div class="stat-number" id="daily-limit">18</div>
+                <p>سيجارة بدلًا من 20</p>
+            </div>
+
+            <div class="plan-details">
+                <div class="plan-card">
+                    <h3>البديل عند الرغبة:</h3>
+                    <ul class="replacement-list">
+                        <li>كوب ماء</li>
+                        <li>نفس عميق 30 ثانية</li>
+                        <li>علكة خالية من السكر</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card">
+                    <h3>المهمة السلوكية:</h3>
+                    <p>امشِ 5 دقائق عندما تشتاق للتدخين</p>
+                </div>
+
+                <div class="plan-card">
+                    <h3>تذكير الأسبوع:</h3>
+                    <p>"كل نقص صغير اليوم يساوي حياة أطول غدًا."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Page -->
+        <div id="progress" class="page hidden">
+            <div class="plan-header">
+                <h1>تتبع التقدم</h1>
+            </div>
+
+            <div class="progress-stats">
+                <div class="stat-card">
+                    <h3>أيام بدون تدخين</h3>
+                    <div class="stat-number" id="days-without">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>سجائر مُجنّبة</h3>
+                    <div class="stat-number" id="cigarettes-saved">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>مال موفّر (ريال)</h3>
+                    <div class="stat-number" id="money-saved">0</div>
+                </div>
+            </div>
+
+            <div class="streak-buttons">
+                <button class="cta-button" onclick="logSuccess()">سجل دخولي اليوم</button>
+                <button class="cta-button" style="background: #dc3545;" onclick="handleSetback()">تعثرت</button>
+            </div>
+
+            <div id="message-area"></div>
+        </div>
+
+        <!-- Replacements Page -->
+        <div id="replacements" class="page hidden">
+            <div class="plan-header">
+                <h1>البدائل الصحية</h1>
+            </div>
+
+            <div class="plan-details">
+                <div class="plan-card">
+                    <h3>بعد الأكل</h3>
+                    <ul class="replacement-list">
+                        <li>تفريش الأسنان</li>
+                        <li>ماء بارد</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card">
+                    <h3>عند التوتر</h3>
+                    <ul class="replacement-list">
+                        <li>تنفس عميق لمدة دقيقة</li>
+                        <li>مشي خفيف</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card">
+                    <h3>مع الأصدقاء</h3>
+                    <ul class="replacement-list">
+                        <li> أمسك كوب ماء</li>
+                        <li>علكة خالية من السكر</li>
+                    </ul>
+                </div>
+
+                <div class="plan-card">
+                    <h3>قبل النوم</h3>
+                    <ul class="replacement-list">
+                        <li>شاي أعشاب</li>
+                        <li>قراءة قصيرة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stories Page -->
+        <div id="stories" class="page hidden">
+            <div class="plan-header">
+                <h1>القصص الملهمة</h1>
+            </div>
+
+            <div class="stories-grid">
+                <div class="story-card">
+                    <h3>محمد - 35 سنة</h3>
+                    <p>بدأت رحلتي مع "تنفّس حرًّا" قبل 6 أشهر كنت أدخن علبة يوميًا. الآن أنقذت نفسي و spareت 3000 ريال شهريًا.</p>
+                    <div class="lesson">الدرس المستفاد: الصبر والمثابرة أهم من الإقلاع الفوري.</div>
+                </div>
+
+                <div class="story-card">
+                    <h3>فاطمة - 28 سنة</h3>
+                    <p>كانت الشيشة تسيطر عليّ في الاجتماعات الاجتماعية. الآن أستخدم الشاي الأخضر وأشعر بالفرق في نفسي.</p>
+                    <div class="lesson">الدرس المستفاد: التغيير يبدأ من العقل أولاً ثم الجسد.</div>
+                </div>
+
+                <div class="story-card">
+                    <h3>أحمد - 42 سنة</h3>
+                    <p>حاولت الإقلاع 5 مرات فاشلًا. مع النظام التدريجي نجحت في أول مرة لأنني لم أشعر بالضغط.</p>
+                    <div class="lesson">الدرس المستفاد: الطريقة المناسبة تصنع الفرق.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="cta-button">أرسل قصتك</button>
+            </div>
+        </div>
+
+        <!-- Support Page -->
+        <div id="support" class="page hidden">
+            <div class="plan-header">
+                <h1>الدعم الحكومي</h1>
+            </div>
+
+            <div class="form-container">
+                <h2 style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">خدمات مجانية مقدمة من وزارة الصحة — لا تبدأ وحدك</h2>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>عيادات الإقلاع عن التدخين</h3>
+                        <p>احجز موعد في العيادات المتخصصة التي توفرها وزارة الصحة</p>
+                        <button class="cta-button" style="margin-top: 1rem;">احجز موعد</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>لصقات النيكوتين</h3>
+                        <p>معلومات عن اللصقات والمضادات المجانية المقدمة من الحكومة</p>
+                        <button class="cta-button" style="margin-top: 1rem;">اطلع على المعلومات</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>الدعم الهاتفي</h3>
+                        <p>الرقم 937 أو نظام موعد للحصول على استشارة فورية</p>
+                        <button class="cta-button" style="margin-top: 1rem;">اتصل الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 تنفّس حرًّا. جميع الحقوق محفوظة.</p>
+            <p>مبادرة تطوعية لمساعدة المجتمع على الإقلاع عن التدخين</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation function
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('active-page');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('active-page');
+            }
+        }
+
+        // Assessment form logic
+        document.getElementById('quit-reason').addEventListener('change', function() {
+            const customReason = document.getElementById('custom-reason');
+            if (this.value === 'other') {
+                customReason.style.display = 'block';
+            } else {
+                customReason.style.display = 'none';
+            }
+        });
+
+        document.getElementById('addiction-level').addEventListener('input', function() {
+            document.getElementById('level-value').textContent = this.value;
+        });
+
+        // Generate plan function
+        function generatePlan() {
+            const dailyAverage = parseInt(document.getElementById('daily-average').value);
+            if (!dailyAverage || dailyAverage <= 0) {
+                alert('يرجى إدخال عدد صحيح من السجائر');
+                return;
+            }
+
+            const reducedAmount = Math.max(1, Math.floor(dailyAverage * 0.9));
+            document.getElementById('daily-limit').textContent = reducedAmount;
+            document.getElementById('plan-week-number').textContent = '1';
+            
+            showPage('plan');
+        }
+
+        // Progress tracking
+        let daysWithoutSmoking = 0;
+        let cigarettesSaved = 0;
+        let moneySaved = 0;
+        const cigarettePrice = 15; // Assuming 15 SAR per cigarette
+
+        function updateProgressDisplay() {
+            document.getElementById('days-without').textContent = daysWithoutSmoking;
+            document.getElementById('cigarettes-saved').textContent = cigarettesSaved;
+            document.getElementById('money-saved').textContent = moneySaved;
+        }
+
+        function logSuccess() {
+            daysWithoutSmoking++;
+            
+            // Get daily average from assessment (default to 20 if not set)
+            const dailyAverage = parseInt(document.getElementById('daily-average').value) || 20;
+            cigarettesSaved += dailyAverage;
+            moneySaved += dailyAverage * cigarettePrice;
+            
+            updateProgressDisplay();
+            
+            const messages = [
+                "4 أيام صمود — هذا إنجاز لا يراه كثيرون.",
+                "أسبوع كامل! أنت تتغير فعلًا.",
+                "10 أيام بدون! قوتك تفاجئك.",
+                "نصف شهر! أنت أقوى مما تتخيل.",
+                "20 يومًا! هذا رقم يُذكر.",
+                "شهر كامل! أنت تعيد كتابة عادتك."
+            ];
+            
+            const messageArea = document.getElementById('message-area');
+            const randomMessage = messages[Math.min(Math.floor(daysWithoutSmoking / 4), messages.length - 1)];
+            
+            messageArea.innerHTML = `
+                <div class="success-message">
+                    <h3>مبارك! 🎉</h3>
+                    <p>${randomMessage}</p>
+                </div>
+            `;
+        }
+
+        function handleSetback() {
+            const messages = [
+                "وقعت؟ طبيعي. القوي ليس الذي لا يفشل — بل الذي يعود.",
+                "أعد ضبط عدّادك… وابدأ من جديد بلا جلد ذات.",
+                "السقوط ليس فشلًا — هو جزء من الطريق.",
+                "كل يوم جديد فرصة جديدة. لا تنظر للوراء.",
+                "ال真正的 القوة في العودة، ليست في عدم السقوط."
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            const messageArea = document.getElementById('message-area');
+            messageArea.innerHTML = `
+                <div class="setback-message">
+                    <h3>لا بأس! 💪</h3>
+                    <p>${randomMessage}</p>
+                </div>
+            `;
+            
+            // Reset streak but keep saved stats
+            daysWithoutSmoking = 0;
+            updateProgressDisplay();
+        }
+
+        // Initialize progress display
+        updateProgressDisplay();
+    </script>
+</body>
+</html>
